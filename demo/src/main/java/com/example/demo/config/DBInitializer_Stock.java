@@ -19,6 +19,7 @@ public class DBInitializer_Stock {
         return args -> {
             // Create a list of sample users
             var stocks = List.of(
+                // TODO: Add more dummy data
                     new Stock(1, "Apple Inc.", "AAPL", 125.91),
                     new Stock(2, "Microsoft Corporation", "MSFT", 250.78),
                     new Stock(3, "Amazon.com Inc.", "AMZN", 3286.58)

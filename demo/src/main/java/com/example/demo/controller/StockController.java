@@ -8,6 +8,7 @@ import com.example.demo.repository.StockRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class StockController {
     @Autowired // Injects the UserRepository dependency - the recomended way is to use contructors  :)
     private StockRepository stockRepository;
 
-
+    @CrossOrigin(origins = "http://localhost:3000") // Allows cross-origin requests from http://localhost:3000
     @GetMapping // Maps HTTP GET requests to /api/users to this method
     public List<Stock> getAllStocks() {
         /*

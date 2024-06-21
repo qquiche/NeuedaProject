@@ -20,7 +20,11 @@ function StockCard({ stock }) {
         <ListGroup variant="flush">
           <ListGroup.Item>Price: ${stock.price.toFixed(2)}</ListGroup.Item>
           <ListGroup.Item className={isPriceUp ? 'text-success' : 'text-danger'}>
-            {isPriceUp ? '▲' : '▼'} {Math.abs(stock.priceChange)} ({stock.priceChangePercent}%)
+            <span style={{ color: isPriceUp ? 'green' : 'red' }}>
+              {isPriceUp ? '▲' : '▼'}
+            </span>
+            {' '}
+            {Math.abs(stock.priceChange)} ({stock.priceChangePercent}%)
           </ListGroup.Item>
         </ListGroup>
       </Card.Body>

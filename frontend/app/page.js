@@ -1,9 +1,8 @@
 "use client";
-import React from "react";
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import StockCard from "../components/StockCard";
 import axios from 'axios';
-import cors from 'cors';
+import "../components/StockCard.css";
 
 export default function Home() {
   const [stocks, setStocks] = useState([]);
@@ -22,7 +21,7 @@ export default function Home() {
   return (
     <div>
       <h1 className="text-center">Stocks</h1>
-      <div className="d-flex flex-wrap justify-content-center">
+      <div className="stock-cards-container"> 
         {stocks.map(stock => (
           <StockCard key={stock.symbol} stock={stock} />
         ))}

@@ -1,22 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.stock-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Ensure at least 280px per card and fill the remaining space */
+    gap: 20px;
+    padding: 20px;
+}
+
 .stock-card {
     border: 1px solid #ddd;
-    border-radius: 8px;
+    border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 10px;
     transition: transform 0.2s;
-  }
-  
-  .stock-card:hover {
+    background: linear-gradient(145deg, #f0f4f8, #d9e2ec);
+    font-family: 'Roboto', sans-serif;
+    margin: 10px;
+    padding: 10px;
+    width: 100%; /* Ensure the card takes up the full width allocated by the grid */
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+}
+
+.stock-card:hover {
     transform: scale(1.05);
-  }
-  
-  .stock-card .card-title {
-    font-size: 1.25rem;
+}
+
+.stock-card .card-title {
+    font-size: 1.5rem;
     font-weight: bold;
-  }
-  
-  .stock-card .list-group-item {
+    color: #333;
+}
+
+.stock-card .badge {
+    padding: 0.5em 1em;
+    border-radius: 12px;
+    font-size: 1rem;
+}
+
+.stock-card .card-subtitle {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.stock-card .list-group-item {
     font-size: 1rem;
     font-weight: 500;
-  }
-  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #ddd;
+    color: #333; /* Ensure text color is visible */
+}
+
+.stock-card .list-group-item:nth-child(even) {
+    background-color: #fff;
+    color: #333; /* Ensure text color is visible */
+}
+
+.stock-card .list-group-item span {
+    font-size: 1.3rem;
+    color: #333; /* Ensure text color is visible */
+}
+
+.stock-card .btn {
+    margin: 5px;
+    font-size: 1rem;
+    padding: 0.5em 1.5em;
+    border-radius: 12px;
+    transition: background-color 0.3s;
+}
+
+.stock-card .btn-buy {
+    background-color: #28a745;
+    color: white;
+}
+
+.stock-card .btn-buy:hover {
+    background-color: #218838;
+}
+
+.stock-card .btn-sell {
+    background-color: #dc3545;
+    color: white;
+}
+
+.stock-card .btn-sell:hover {
+    background-color: #c82333;
+}
+
+.stock-card .action-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}

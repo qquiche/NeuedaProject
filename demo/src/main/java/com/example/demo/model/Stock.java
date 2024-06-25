@@ -12,7 +12,7 @@ public class Stock {
     
     @Id // Specifies the primary key of the entity
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Specifies that the primary key value will be generated automatically
-    private Integer id;
+    private Long id;
     private String name;
     private String symbol;
     private double price;
@@ -22,7 +22,7 @@ public class Stock {
     public Stock() {
     }
 
-    public Stock(Integer id, String name, String symbol, double price, double priceChange, double priceChangePercent) {
+    public Stock(Long id, String name, String symbol, double price, double priceChange, double priceChangePercent) {
         this.id = id;
         this.name = name;
         this.symbol = symbol;
@@ -31,11 +31,11 @@ public class Stock {
         this.priceChangePercent = priceChangePercent;
     }
     // Getters and Setters
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -9,6 +9,9 @@ import com.example.demo.repository.StockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +36,8 @@ public class StockController {
     // TODO: API Calls needed
 
     // GET stock by symbol
-
+    @CrossOrigin(origins = "http://localhost:3000") // Allows cross-origin requests from http://localhost:3000
+    @GetMapping("/symbol") // Maps HTTP GET requests to /api/users/symbol to this method
     public List<Stock> getStockBySymbol(String symbol) {
         List<Stock> stocks = stockRepository.findAll();
         List<Stock> result = new ArrayList<Stock>();
@@ -47,6 +51,8 @@ public class StockController {
     }
 
     // GET stock by page (2 inputs: page number and # of entries per page)
+    @CrossOrigin(origins = "http://localhost:3000") // Allows cross-origin requests from http://localhost:3000
+    @GetMapping("/page") // Maps HTTP GET requests to /api/users/page to this method
     public List<Stock> getStockByPage(int page, int entriesPerPage) {
         List<Stock> stocks = stockRepository.findAll();
         List<Stock> result = new ArrayList<Stock>();
@@ -60,6 +66,8 @@ public class StockController {
     // GET stock by categorical filter (1 input: category)
 
     //  GET stock in sorted order by numeric attribute (2 inputs: attribute and ascending/descending)
+    @CrossOrigin(origins = "http://localhost:3000") // Allows cross-origin requests from http://localhost:3000
+    @GetMapping("/sort") // Maps HTTP GET requests to /api/users/sort to this method
     public List<Stock> getStockSortedByAttribute(String attribute, boolean ascending) {
         List<Stock> stocks = stockRepository.findAll();
         if (attribute.equals("price")) {
@@ -73,5 +81,13 @@ public class StockController {
         return stocks;
     }
     // OPTIONAL: Implement a POST/PUT requests
+
+    // POST stock
+    @CrossOrigin(origins = "http://localhost:3000") // Allows cross-origin requests from http://localhost:3000
+    @PostMapping // Maps HTTP POST requests to /api/users to this method
+    public ResponseEntity<Stock> postStock(@RequestBody Stock stock) {
+        stockRepository.save(stock);
+        return ResponseEntity.ok(stock);
+    }
 }
 

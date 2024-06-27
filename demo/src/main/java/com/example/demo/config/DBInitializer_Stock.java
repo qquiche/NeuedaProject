@@ -1,4 +1,5 @@
 package com.example.demo.config;
+import org.ietf.jgss.GSSContext;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -42,7 +43,40 @@ public class DBInitializer_Stock {
                     new Stock(18l, "T-Mobile US Inc.", "TMUS", 178.02, 1.29, 0.73),
                     new Stock(19l, "Meta Platforms Inc", "META", 497.59, 2.81, 0.57),
                     new Stock(20l, "AMC Entertainment Holdings", "AMC", 4.50, -0.045, -0.99),
-                    new Stock(21l, "Snail Inc", "SNAL", 0.91, 0.067, 7.90)
+                    new Stock(21l, "Snail Inc", "SNAL", 0.91, 0.067, 7.90),
+                    new Stock(22l, "Twitter Inc", "TWTR", 45.67, -0.23, -0.50),
+                    new Stock(23l, "Alibaba Group Holding Ltd", "BABA", 150.00, -0.50, -0.33),
+                    new Stock(24l, "Palantir Technologies Inc", "PLTR", 25.00, -0.50, -0.33),
+                    new Stock(25l, "Coinbase Global Inc", "COIN", 250.00, -0.50, -0.33),
+                    new Stock(26l, "Shopify Inc", "SHOP", 1000.00, -0.50, -0.33),
+                    new Stock(27l, "Square Inc", "SQ", 250.00, -0.50, -0.33),
+                    new Stock(28l, "Spotify Technology SA", "SPOT", 250.00, -0.50, -0.33),
+                    new Stock(29l, "Slack Technologies Inc", "WORK", 250.00, -0.50, -0.33),
+                    new Stock(30l, "Pinterest Inc", "PINS", 250.00, -0.50, -0.33),
+                    new Stock(31l, "Snap Inc", "SNAP", 250.00, -0.50, -0.33),
+                    new Stock(32l, "Twilio Inc", "TWLO", 250.00, -0.50, -0.33),
+                    new Stock(33l, "Uber Technologies Inc", "UBER", 250.00, -0.50, -0.33),
+                    new Stock(34l, "Lyft Inc", "LYFT", 250.00, -0.50, -0.33),
+                    new Stock(35l, "DoorDash Inc", "DASH", 250.00, -0.50, -0.33),
+                    new Stock(36l, "Airbnb Inc", "ABNB", 250.00, -0.50, -0.33),
+                    new Stock(37l, "Snowflake Inc", "SNOW", 250.00, -0.50, -0.33),
+                    new Stock(38l, "Unity Software Inc", "U", 250.00, -0.50, -0.33),
+                    new Stock(39l, "Asana Inc", "ASAN", 250.00, -0.50, -0.33),
+                    new Stock(40l, "The Goldman Sachs Group, INC.", "GS", 450.00, 3.82, 0.86),
+                    new Stock(41l, "JPMorgan Chase & Co.", "JPM", 150.00, 1.23, 0.83),
+                    new Stock(42l, "Bank of America Corp", "BAC", 50.00, 0.23, 0.46),
+                    new Stock(43l, "Wells Fargo & Co", "WFC", 25.00, 0.23, 0.92),
+                    new Stock(44l, "Citigroup Inc", "C", 50.00, 0.23, 0.46),
+                    new Stock(45l, "Morgan Stanley", "MS", 50.00, 0.23, 0.46),
+                    new Stock(46l, "BlackRock Inc", "BLK", 50.00, 0.23, 0.46),
+                    new Stock(47l, "Vanguard Group Inc", "VGRD", 50.00, 0.23, 0.46),
+                    new Stock(48l, "Charles Schwab Corp", "SCHW", 50.00, 0.23, 0.46),
+                    new Stock(49l, "Fidelity Investments Inc", "FID", 50.00, 0.23, 0.46),
+                    new Stock(50l, "American Express Co", "AXP", 50.00, 0.23, 0.46),
+                    
+
+
+                    
                     
             );
 

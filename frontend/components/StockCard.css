@@ -95,3 +95,35 @@
     justify-content: center;
     margin-top: 10px;
 }
+
+
+.stock-card .stock-card-label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    padding: 10px;
+    margin:auto;
+}
+
+.stock-card .stock-card-input {
+    font-size: 1rem;
+    padding: 5px;
+    margin:auto;
+    color: #333;
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+
+.stock-card .stock-card-submit {
+    font-size: 1rem;
+    padding: 0.5em 1.5em;
+    border-radius: 12px;
+    transition: background-color 0.3s;
+    margin:auto;
+    color: #777;
+    margin-top: 10px;
+}
+
+.stock-card .stock-card-submit:hover {
+    background-color: #f9f9f9;
+}

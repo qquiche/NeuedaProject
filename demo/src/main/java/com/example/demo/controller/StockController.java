@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController // Marks this class as a Spring MVC controller where every method returns a domain object instead of a view
 @RequestMapping("/api/stocks") // Maps HTTP requests to /api/users to this controller
@@ -63,7 +64,31 @@ public class StockController {
         }
         return result;
     }
+
     // GET stock by categorical filter (1 input: category)
+    @CrossOrigin(origins = "http://localhost:3000") // Allows cross-origin requests from http://localhost:3000
+    @GetMapping("/filter") // 
+    public List<Stock> getStockByFilter(String keyword, double minValue, double maxValue) {
+        List<Stock> stocks = stockRepository.findAll();
+        List<Stock> result = new ArrayList<Stock>();
+
+        for (Stock stock : stocks) {
+            boolean isValid = false;
+
+            if ("price".equals(keyword)) {
+                isValid = stock.getPrice() >= minValue && stock.getPrice() <= maxValue;
+            } else if ("priceChange".equals(keyword)) {
+                isValid = stock.getPriceChange() >= minValue && stock.getPriceChange() <= maxValue;
+            } else if ("priceChangePercent".equals(keyword)) {
+                isValid = stock.getPriceChangePercent() >= minValue && stock.getPriceChangePercent() <= maxValue;
+            }
+
+            if (isValid) {
+                result.add(stock);
+            }
+        }
+        return result;
+    }
 
     //  GET stock in sorted order by numeric attribute (2 inputs: attribute and ascending/descending)
     @CrossOrigin(origins = "http://localhost:3000") // Allows cross-origin requests from http://localhost:3000

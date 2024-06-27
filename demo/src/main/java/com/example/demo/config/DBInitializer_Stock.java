@@ -72,8 +72,8 @@ public class DBInitializer_Stock {
                     new Stock(47l, "Vanguard Group Inc", "VGRD", 50.00, 0.23, 0.46),
                     new Stock(48l, "Charles Schwab Corp", "SCHW", 50.00, 0.23, 0.46),
                     new Stock(49l, "Fidelity Investments Inc", "FID", 50.00, 0.23, 0.46),
-                    new Stock(50l, "American Express Co", "AXP", 50.00, 0.23, 0.46),
-                    
+                    new Stock(50l, "American Express Co", "AXP", 50.00, 0.23, 0.46)
+
 
 
                     

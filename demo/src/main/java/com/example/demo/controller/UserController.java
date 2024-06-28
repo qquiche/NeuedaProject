@@ -68,11 +68,24 @@ public class UserController {
         // Update user by buying/selling stock
         @CrossOrigin(origins = "http://localhost:3000")
         @PutMapping("/{id}/stock/{stockID}")
-        public ResponseEntity<User> updateUserStock(Long id, Long stockID, int quantity) {
+        public ResponseEntity<User> updateUserStock(Long id, String stockID, int quantity, double price) {
             List<User> users = userRepository.findAll();
             for (User user : users) {
                 if (user.getId().equals(id)) {
-                    user.buyStock(stockID, quantity);
+                    if(quantity < 0 && !user.getStockShares().containsKey(stockID)) {
+                        return ResponseEntity.badRequest().build();
+                    }
+                    if(quantity > 0 && user.getBalance() < quantity * price) {
+                        return ResponseEntity.badRequest().build();
+                    }
+                    if(quantity < 0 && user.getShares(stockID) < quantity) {
+                        return ResponseEntity.badRequest().build();
+                    }
+                    if (quantity < 0) {
+                        user.sellStock(stockID, -quantity, price);
+                    } else {
+                    user.buyStock(stockID, quantity, price);
+                    }
                     userRepository.save(user);
                     return ResponseEntity.ok(user);
                 }

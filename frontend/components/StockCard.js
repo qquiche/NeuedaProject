@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { act, useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Badge from 'react-bootstrap/Badge';
@@ -24,10 +24,13 @@ function StockCard({user, stock }) {
   };
 
   const handleQuantityChange = (e) => {
-    if(action ==='buy'){
-    setQuantity(e.target.value);
+    if (action === 'buy') {
+      setQuantity(Math.abs(e.target.value))
+    }
+    else if (action === 'sell') {
+      setQuantity(-Math.abs(e.target.value))
     } else {
-      setQuantity(-e.target.value);
+      setQuantity(0);
     }
   };
 
@@ -36,13 +39,14 @@ function StockCard({user, stock }) {
     // Placeholder for the PUT call using axios
     // Example:
     try {
-      const response = await axios.put(`http://localhost:8080/api/users/{id}/stock/{stockID}?id=${user.id}&stockID=${stock.id}&quantity=${quantity}`);
+      const response = await axios.put(`http://localhost:8080/api/users/{id}/stock/{stockID}?id=${user.id}&stockID=${stock.symbol}&quantity=${quantity}&price=${stock.price}`);
       console.log('Response:', response.data);
     } catch (error) {
       console.error('Error making PUT request:', error);
     }
     setShowInput(false);
     setQuantity(0);
+    window.location.reload();
   };
 
   return (
@@ -79,7 +83,7 @@ function StockCard({user, stock }) {
               <Form.Control 
                 className="stock-card-input" 
                 type="number" 
-                value={Math.abs(quantity)} 
+                defaultValue={Math.abs(quantity)}
                 onChange={handleQuantityChange} 
                 min="1"
                 required

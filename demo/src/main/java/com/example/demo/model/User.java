@@ -19,14 +19,16 @@ public class User {
     private Long id;
     private String name;
     @ElementCollection
-    private Map<Long, Integer> stockShares = new HashMap<>();
+    private Map<String, Integer> stockShares = new HashMap<>();
+    private double balance;
 
     public User() {
     }
 
-    public User(Long id, String name, Map<Long, Integer> stockShares) {
+    public User(Long id, String name, double balance, Map<String, Integer> stockShares) {
         this.id = id;
         this.name = name;
+        this.balance = balance;
         this.stockShares = stockShares;
     }
 
@@ -49,24 +51,31 @@ public class User {
     }
 
 
-    public Map<Long, Integer> getStockShares() {
+    public Map<String, Integer> getStockShares() {
         return stockShares;
     }
 
-
-    public void setStockShares(Map<Long, Integer> stockShares) {
+    public void setStockShares(Map<String, Integer> stockShares) {
         this.stockShares = stockShares;
     }
 
-    public void addStock(Long stockId, Integer shares) {
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public void addStock(String stockId, Integer shares) {
         stockShares.put(stockId, shares);
     }
 
-    public void removeStock(Long stockId) {
+    public void removeStock(String stockId) {
         stockShares.remove(stockId);
     }
 
-    public void updateStock(Long stockId, Integer shares) {
+    public void updateStock(String stockId, Integer shares) {
         stockShares.put(stockId, shares);
     }
 
@@ -74,15 +83,21 @@ public class User {
         stockShares.clear();
     }
 
-    public boolean hasStock(Long stockId) {
+    public boolean hasStock(String stockId) {
         return stockShares.containsKey(stockId);
     }
 
-    public Integer getShares(Long stockId) {
+    public Integer getShares(String stockId) {
         return stockShares.get(stockId);
     }
 
-    public void buyStock(Long stockId, Integer shares) {
+    public void buyStock(String stockId, Integer shares, double price) {
+        double cost = shares * price;
+        if (balance >= cost) {
+            balance -= cost;
+        } else {
+            return;
+        }
         if (stockShares.containsKey(stockId)) {
             stockShares.put(stockId, stockShares.get(stockId) + shares);
         } else {
@@ -90,7 +105,12 @@ public class User {
         }
     }
 
-    public void sellStock(Long stockId, Integer shares) {
+    public void sellStock(String stockId, Integer shares, double price) {
+        if(!stockShares.containsKey(stockId)) {
+            return;
+        }
+        double profit = shares * price;
+        balance += profit;
         if (stockShares.containsKey(stockId)) {
             stockShares.put(stockId, stockShares.get(stockId) - shares);
             if (stockShares.get(stockId) == 0) {

@@ -81,10 +81,10 @@ public class DBInitializer_Stock {
             );
 
             var users = List.of(
-                    new User(1l, "Grace", new HashMap<Long, Integer>()),
-                    new User(2l, "Kelvin", new HashMap<Long, Integer>()),
-                    new User(3l, "Naren", new HashMap<Long, Integer>()),
-                    new User(4l, "Ethan", new HashMap<Long, Integer>())
+                    new User(1l, "Grace",1000, new HashMap<String, Integer>()),
+                    new User(2l, "Kelvin",13002, new HashMap<String, Integer>()),
+                    new User(3l, "Naren",500, new HashMap<String, Integer>()),
+                    new User(4l, "Ethan",0, new HashMap<String, Integer>())
             );
             // Save all users to the database
             stockRepository.saveAll(stocks);

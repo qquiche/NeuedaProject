@@ -78,13 +78,13 @@ public class UserController {
                     if(quantity > 0 && user.getBalance() < quantity * price) {
                         return ResponseEntity.badRequest().build();
                     }
-                    if(quantity < 0 && user.getShares(stockID) < quantity) {
+                    if(quantity < 0 && user.getShares(stockID) < Math.abs(quantity)) {
                         return ResponseEntity.badRequest().build();
                     }
                     if (quantity < 0) {
-                        user.sellStock(stockID, -quantity, price);
+                        user.sellStock(stockID, Math.abs(quantity), price);
                     } else {
-                    user.buyStock(stockID, quantity, price);
+                    user.buyStock(stockID, Math.abs(quantity), price);
                     }
                     userRepository.save(user);
                     return ResponseEntity.ok(user);

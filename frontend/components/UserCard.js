@@ -6,8 +6,7 @@ import './UserCard.css'; // Import the custom CSS
 import AvatarPic from '../assets/avatar.png';
 import Form from 'react-bootstrap/Form';
 
-function UserCard({ users }) {
-    const [user, setUser] = useState(users[0]); // Initialize user as the first user in the array   
+function UserCard({user, users, setUser }) {  
 
     const handleUserChange = (e) => {
         const selectedUser = users.find(u => u.name === e.target.value);
@@ -23,7 +22,7 @@ function UserCard({ users }) {
                 <Card.Text className="user-bio">Balance: ${parseFloat(user.balance).toFixed(2)}</Card.Text>
                 <Card.Text className="user-bio">Valuation: ${parseFloat(user.valuation).toFixed(2)}</Card.Text>
                 <Form.Select className="user-select" onChange={handleUserChange}>
-                    {users.map((u, index) => (
+                    {users.map((u, index) => (user,
                         <option key={index}>{u.name}</option>
                     ))}
                 </Form.Select>

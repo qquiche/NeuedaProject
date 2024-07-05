@@ -49,11 +49,11 @@ export default function Home() {
     <div>
       <h1 className="text-center header">Stocks</h1>
       <div>
-        <UserCard users={users}  />
+        <UserCard user = {user} users={users} setUser={setUser}/>
       </div>
       <div className="stock-cards-container"> 
         {stocks.map(stock => (
-          <StockCard key={stock.symbol} user={user} stock={stock} />
+          <StockCard key={stock.symbol} user={user} stock={stock} setUser = {setUser} setUsers={setUsers} users={users} />
         ))}
       </div>
     </div>

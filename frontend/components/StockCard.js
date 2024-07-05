@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import './StockCard.css'; // Import the custom CSS
 
-function StockCard({user, stock }) {
+function StockCard({user, stock, setUser, setUsers, users}) {
   const [showInput, setShowInput] = useState(false);
   const [action, setAction] = useState('');
   const [quantity, setQuantity] = useState(0);
@@ -40,13 +40,21 @@ function StockCard({user, stock }) {
     // Example:
     try {
       const response = await axios.put(`http://localhost:8080/api/users/{id}/stock/{stockID}?id=${user.id}&stockID=${stock.symbol}&quantity=${quantity}&price=${stock.price}`);
+      const users_temp = users.map(u => {
+        if (u.id === user.id) {
+          u = response.data;
+        } 
+        return u;
+      });
+      setUsers(users_temp);
+      console.log(users);
+      setUser(response.data);
       console.log('Response:', response.data);
     } catch (error) {
       console.error('Error making PUT request:', error);
     }
     setShowInput(false);
     setQuantity(0);
-    window.location.reload();
   };
 
   return (

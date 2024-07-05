@@ -7,11 +7,20 @@ import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import './StockCard.css'; // Import the custom CSS
 
-function StockCard({user, stock, setUser, setUsers, users}) {
+function StockCard({user, stock, setUser, setUsers, users, stocks}) {
   const [showInput, setShowInput] = useState(false);
   const [action, setAction] = useState('');
   const [quantity, setQuantity] = useState(0);
   const isPriceUp = stock.priceChange >= 0;
+
+  function calculateValuation(user) {
+    let valuation = 0;
+    Object.keys(user.stockShares).forEach(stock => {
+      let stockPrice = stocks.find(s => s.symbol === stock)?.price || 0;
+      valuation += stockPrice * user.stockShares[stock];
+    });
+    return valuation;
+  }
 
   const handleBuyClick = () => {
     setAction('buy');
@@ -40,15 +49,16 @@ function StockCard({user, stock, setUser, setUsers, users}) {
     // Example:
     try {
       const response = await axios.put(`http://localhost:8080/api/users/{id}/stock/{stockID}?id=${user.id}&stockID=${stock.symbol}&quantity=${quantity}&price=${stock.price}`);
+      const valuation = calculateValuation(response.data);
       const users_temp = users.map(u => {
         if (u.id === user.id) {
-          u = response.data;
+          u = { ...response.data, valuation };
         } 
         return u;
       });
       setUsers(users_temp);
       console.log(users);
-      setUser(response.data);
+      setUser({...response.data, valuation});
       console.log('Response:', response.data);
     } catch (error) {
       console.error('Error making PUT request:', error);

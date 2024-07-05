@@ -62,7 +62,7 @@ export default function Home() {
       </div>
       <div className="stock-cards-container">
         {filteredStocks.map(stock => (
-          <StockCard key={stock.symbol} user={user} stock={stock} setUser={setUser} setUsers={setUsers} users={users} />
+          <StockCard key={stock.symbol} user={user} stock={stock} setUser={setUser} setUsers={setUsers} users={users} stocks = {stocks}/>
         ))}
       </div>
     </div>

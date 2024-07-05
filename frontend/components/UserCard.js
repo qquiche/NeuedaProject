@@ -28,6 +28,14 @@ function UserCard({ user, users, setUser, setUsers }) {
         setNewUserBalance('');
         setNewUserValuation('');
     };
+    function calculateValuation(user) {
+        let valuation = 0;
+        Object.keys(user.stockShares).forEach(stock => {
+          let stockPrice = stocks.find(s => s.symbol === stock)?.price || 0;
+          valuation += stockPrice * user.stockShares[stock];
+        });
+        return valuation;
+      }
 
     const handleAddUser = async (e) => {
         e.preventDefault();
@@ -41,7 +49,7 @@ function UserCard({ user, users, setUser, setUsers }) {
                 }
             });
             if (response.status === 200) {
-                const addedUser = response.data;
+                const addedUser = { ...response.data, valuation: calculateValuation(response.data) };
                 setUsers(prevUsers => [...prevUsers, addedUser]);
                 setUser(addedUser);
                 handleCloseModal(); // Close the modal and reset form

@@ -48,7 +48,7 @@ export default function Home() {
     <div>
       <h1 className="text-center header">Stocks</h1>
       <div >
-        <UserCard user={user} users={users} setUser={setUser}/>
+        <UserCard user={user} users={users} setUser={setUser} setUsers = {setUsers}/>
       </div>
       <div className='search-wrapper'>
         <input

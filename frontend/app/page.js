@@ -11,7 +11,7 @@ export default function Home() {
   const [stocks, setStocks] = useState([]);
   const [users, setUsers] = useState([]);
   const [user, setUser] = useState(null);
-  const [searchQuery, setSearchQuery] = useState(""); // Step 1: Add a search state
+  const [searchQuery, setSearchQuery] = useState(""); 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,7 +40,6 @@ export default function Home() {
     return <div>Loading...</div>;
   }
 
-  // Step 3: Filter stocks based on search query
   const filteredStocks = stocks.filter(stock =>
     stock.name.toLowerCase().includes(searchQuery.toLowerCase()) || stock.symbol.toLowerCase().includes(searchQuery.toLowerCase())
   );

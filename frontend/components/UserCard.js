@@ -3,49 +3,48 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import axios from 'axios'; 
-import './UserCard.css'; 
+import Modal from 'react-bootstrap/Modal';
+import axios from 'axios';
+import './UserCard.css';
 
 function UserCard({ user, users, setUser, setUsers }) {
     const [newUserName, setNewUserName] = useState('');
     const [newUserBalance, setNewUserBalance] = useState('');
-    const [newUserValuation, setNewUserValuation] = useState('');
-    const [showAddUserForm, setShowAddUserForm] = useState(false);
+    const [newUserValuation, setNewUserValuation] = useState(0);
+    const [showModal, setShowModal] = useState(false);
 
     const handleUserChange = (e) => {
         if (e.target.value === "Add New User") {
-            setShowAddUserForm(true);
-            setUser(null); // Clear current user display
+            setShowModal(true); // Open the modal
         } else {
             const selectedUser = users.find(u => u.name === e.target.value);
             setUser(selectedUser);
-            setShowAddUserForm(false);
         }
+    };
+
+    const handleCloseModal = () => {
+        setShowModal(false);
+        setNewUserName('');
+        setNewUserBalance('');
+        setNewUserValuation('');
     };
 
     const handleAddUser = async (e) => {
         e.preventDefault();
-        const newUser = {
-            name: newUserName,
-            balance: parseFloat(newUserBalance),
-            valuation: parseFloat(newUserValuation),
-            stockShares: {} // Assuming new users start with no stock shares
-        };
-
+        const formData = new FormData();
+        formData.append('name', newUserName);
+        formData.append('balance', newUserBalance.toString());
         try {
-            const response = await axios.put('http://localhost:8080/api/users', newUser, {
+            const response = await axios.post('http://localhost:8080/api/users', formData, {
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'multipart/form-data'
                 }
             });
             if (response.status === 200) {
                 const addedUser = response.data;
-                setUsers(prevUsers => [...prevUsers, addedUser]); // Update users list
-                setUser(addedUser); // Set newly added user as the current user
-                setShowAddUserForm(false); // Hide the form
-                setNewUserName(''); // Reset the form values
-                setNewUserBalance('');
-                setNewUserValuation('');
+                setUsers(prevUsers => [...prevUsers, addedUser]);
+                setUser(addedUser);
+                handleCloseModal(); // Close the modal and reset form
             } else {
                 throw new Error('Failed to add user');
             }
@@ -71,14 +70,6 @@ function UserCard({ user, users, setUser, setUsers }) {
                         ))}
                         <option value="Add New User">Add New User</option>
                     </Form.Select>
-                    {showAddUserForm && (
-                        <Form className="add-user-form" onSubmit={handleAddUser}>
-                            <Form.Control type="text" placeholder="Name" value={newUserName} onChange={(e) => setNewUserName(e.target.value)} required />
-                            <Form.Control type="number" placeholder="Balance" value={newUserBalance} onChange={(e) => setNewUserBalance(e.target.value)} required />
-                            <Form.Control type="number" placeholder="Valuation" value={newUserValuation} onChange={(e) => setNewUserValuation(e.target.value)} required />
-                            <Button variant="primary" type="submit">Add User</Button>
-                        </Form>
-                    )}
                 </div>
                 <div className="user-stock">
                     {user && (
@@ -92,6 +83,24 @@ function UserCard({ user, users, setUser, setUsers }) {
                     )}
                 </div>
             </div>
+            <Modal show={showModal} onHide={handleCloseModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Add New User</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form onSubmit={handleAddUser}>
+                        <Form.Group>
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control type="text" placeholder="Enter name" value={newUserName} onChange={(e) => setNewUserName(e.target.value)} required />
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Balance</Form.Label>
+                            <Form.Control type="number" placeholder="Enter balance" value={newUserBalance} onChange={(e) => setNewUserBalance(e.target.value)} required />
+                        </Form.Group>
+                        <Button variant="primary" type="submit">Add User</Button>
+                    </Form>
+                </Modal.Body>
+            </Modal>
         </Card>
     );
 }

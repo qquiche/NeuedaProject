@@ -35,7 +35,7 @@ public class DBInitializer_Stock {
                     new Stock(10l, "Adobe Inc.", "ADBE", 500.00, 7.89, 1.60),
                     new Stock(11l, "Zoom Video Communications Inc.", "ZM", 500.00, -5.23, -1.03),
                     new Stock(12l, "GameStop Corp", "GME", 23.39, -0.53, -1.03),
-                    new Stock(13l, "Microsoft Corp", "MSFT", 448.15, -1.63, -0.36),
+                    new Stock(13l, "General Electric Co", "GE", 13.50, -0.23, -1.68),
                     new Stock(14l, "Reddit Inc", "RDDT", 56.76, -0.54, -0.94),
                     new Stock(15l, "Intel Corp", "INTC", 30.80, -0.28, -0.92),
                     new Stock(16l, "Walt Disney Co", "DIS", 101.97, -0.32, -0.31),

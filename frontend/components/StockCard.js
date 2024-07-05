@@ -107,9 +107,14 @@ function StockCard({user, stock, setUser, setUsers, users, stocks}) {
                 required
               />
             </Form.Group>
+            <div className='action-buttons'> 
             <Button variant="primary" type="submit" className="mt-2 stock-card-submit">
               Submit
             </Button>
+            <Button variant="secondary" onClick={() => setShowInput(false)} className="mt-2 stock-card-cancel">
+              Cancel
+            </Button>
+            </div>
           </Form>
         )}
       </Card.Body>

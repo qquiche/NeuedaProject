@@ -20,9 +20,9 @@
     box-sizing: border-box; /* Ensure padding and border are included in the width */
 }
 
-.stock-card:hover {
+/* .stock-card:hover {
     transform: scale(1.05);
-}
+} */
 
 .stock-card .card-title {
     font-size: 1.5rem;
@@ -124,6 +124,21 @@
     margin-top: 10px;
 }
 
+.stock-card .stock-card-cancel {
+    font-size: 1rem;
+    padding: 0.5em 1.5em;
+    border-radius: 12px;
+    transition: background-color 0.3s;
+    margin:auto;
+    color: #777;
+    margin-top: 10px;
+}
+
 .stock-card .stock-card-submit:hover {
     background-color: #f9f9f9;
+}
+
+.stock-card .stock-card-cancel:hover {
+    background-color: #ff4b4b;
+    color: white;
 }

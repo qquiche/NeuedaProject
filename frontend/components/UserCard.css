@@ -9,9 +9,7 @@
     width: 100%;
     height: 400px;
     background-color: #333;
-    border-radius: 8px;
     padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .user-info {
@@ -59,7 +57,10 @@
     padding: 20px;
     background-color: #252525;
     border-radius: 8px;
+    border-color: #000000;
+    border-width: 2px;
     color: #ddd;
+    font-size: larger;
 }
 /* User social links */
 .user-social-links {
@@ -91,9 +92,7 @@
     width: 100%;
     height: 400px;
     background-color: #333;
-    border-radius: 8px;
     padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* User Stock*/

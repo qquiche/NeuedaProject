@@ -1,0 +1,87 @@
+
+.modal-box {
+    border-radius: 10px;
+}
+
+.modal-button {
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 1.2rem;
+    padding: 0.5em 1.5em;
+    border-radius: 12px;
+    transition: background-color 0.3s;
+    margin:auto;
+    margin-top: 10px;
+}
+
+.modal-button:hover {
+    background-color: green;
+}
+
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px 10px 10px 10px;
+    background-color: #252525;
+    border-radius: 8px;
+    border-color: #000000;
+    border-width: 2px;
+    color: #ddd;
+    font-size: larger;
+}
+.form-label {
+    font-size: 1rem;
+    color: #ffffff;
+    padding: 10px;
+    margin:auto;
+}
+.form-input {
+    font-size: 1rem;
+    padding: 5px;
+    margin:auto;
+    color: #333;
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+
+.modal-submit {
+    font-size: 1rem;
+    padding: 0.5em 1.5em;
+    border-radius: 12px;
+    transition: background-color 0.3s;
+    margin:auto;
+    color: #999;
+    margin-top: 10px;
+}
+
+.modal-cancel {
+    font-size: 1rem;
+    padding: 0.5em 1.5em;
+    border-radius: 12px;
+    transition: background-color 0.3s;
+    margin:auto;
+    color: #999;
+    margin-top: 10px;
+}
+
+.modal-submit:hover {
+    background-color: #f9f9f9;
+}
+
+.modal-cancel:hover {
+    background-color: #ff4b4b;
+    color: white;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}

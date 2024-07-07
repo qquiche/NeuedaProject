@@ -7,6 +7,7 @@ import "../components/StockCard.css";
 import "../components/UserCard.css";
 import "./page.css";
 import MultiRangeSlider from "multi-range-slider-react";
+import StockAddModal from '../components/StockAddModal';
 
 export default function Home() {
   const [stocks, setStocks] = useState([]);
@@ -118,6 +119,7 @@ export default function Home() {
         />
       </div>
       </div>
+      <StockAddModal stocks={stocks} setStocks={setStocks}/>
       </div>
       <div className="stock-cards-container">
         {filteredStocks.map(stock => (

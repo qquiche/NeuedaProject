@@ -19,6 +19,8 @@ export default function Home() {
   const [showPositive, setShowPositive] = useState(true);
   const [showNegative, setShowNegative] = useState(true);
   const [showAffordable, setShowAffordable] = useState(false);
+  const [sortBy, setSortBy] = useState('name');
+
 
 
 
@@ -51,8 +53,7 @@ export default function Home() {
 
   const filteredStocks = stocks.filter(stock =>
     (stock.name.toLowerCase().includes(searchQuery.toLowerCase()) || stock.symbol.toLowerCase().includes(searchQuery.toLowerCase())) && stock.price >= minPrice && stock.price <= maxPrice && (showPositive && stock.priceChange >= 0 || showNegative && stock.priceChange < 0) && (showAffordable ? stock.price <= user.balance : true)
-  );
-
+  ).sort((a, b) => { if (sortBy === 'name') { return a.name.localeCompare(b.name); } else if (sortBy === "symbol") { return a.symbol.localeCompare(b.symbol) } else if (sortBy === 'price') { return a.price - b.price; } else if (sortBy === 'priceChange') { return a.priceChange - b.priceChange; } else if (sortBy === 'priceChangePercent') { return a.priceChangePercent - b.priceChangePercent; } else { return 0; } }); 
   const findMaxPrice = () => {
     let max = 0;
     stocks.forEach(stock => {
@@ -108,6 +109,16 @@ export default function Home() {
       maxLabel="Max Price"
       className='slider'
 		/>
+      </div>
+      <div className='sort-wrapper'>
+      <h4 className='sort-label'>Sort By</h4>
+      <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className='sort-select'>
+        <option value='name'>Name</option>
+        <option value='symbol'>Symbol</option>
+        <option value='price'>Price</option>
+        <option value='priceChange'>Price Change</option>
+        <option value='priceChangePercent'>Price Change Percent</option>
+      </select>
       </div>
       <div className='search-wrapper'>
         <input
